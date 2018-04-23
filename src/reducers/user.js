@@ -1,10 +1,15 @@
-import { USER_LOGED_IN } from "../types";
+import * as types from "../types";
+import { generateSuccessActionTypeName } from '../middleware/asyncActionsMiddleware';
 
+const defaultState = null;
 
-export default function user(state={}, action={}) {
+export default function user(state=defaultState, action={}) {
     switch(action.type) {
-        case USER_LOGED_IN:
-            return action.user;
+        case generateSuccessActionTypeName(types.USER_LOGIN):
+          return {
+            ...state,
+            ...action.payload,
+          };
         default: return state;
     }
 }
