@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
+import PopupErrorWrapper from './components/messages/PopupErrorWrapper';
 
-const App = () => <div className="ui container">
-  <Route path="/" exact component={HomePage} />
-  <Route path="/login" exact component={LoginPage} />
-</div>;
+class App extends Component {
+  render() {
+
+    return (
+      <div className="ui container">
+        <PopupErrorWrapper />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/login" exact component={LoginPage} />
+      </div>
+    );
+  }
+}
 
 export default App;
-
-

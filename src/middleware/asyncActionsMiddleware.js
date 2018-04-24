@@ -3,7 +3,7 @@ export const generateSuccessActionTypeName = basicActionName => `${basicActionNa
 export const generateErrorActionTypeName = basicActionName => `${basicActionName}_ERROR`;
 
 export const asyncActionsMiddleware = store => next => action => {
-  const isAsyncAction = action.hasOwnProperty('async');
+  const isAsyncAction = action.async;
   if (!isAsyncAction) {
     return next(action);
   } else {

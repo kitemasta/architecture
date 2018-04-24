@@ -1,9 +1,9 @@
 import * as types from '../types';
 import api from '../api';
 
-export const login = credentials => ({
+export const login = user => ({
   type: types.USER_LOGIN,
   async: true,
   apiCall: () => api.user.login(),
-  params: [credentials],
+  params: [user],
 });

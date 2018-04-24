@@ -9,22 +9,14 @@ class LoginPage extends Component {
 
     submit = data => this.props.login(data);
 
-    componentWillReceiveProps(nextProps) {
-      if (this.props.user !== nextProps.user && !nextProps.user.error) {
-        localStorage.setItem('Authenticated', true);
-        this.props.history.push('/');
-      }
-    }
-
     render() {
-        const { errors: { loginError }, isLoading } = this.props;
+        const { isLoading } = this.props;
 
         return (
             <div>
                 <h1>Login Page</h1>
                 <LoginForm
                     submit={this.submit}
-                    loginError={loginError}
                     isLoading={isLoading}
                 />
             </div>
@@ -33,15 +25,11 @@ class LoginPage extends Component {
 };
 
 LoginPage.propTypes = {
-    history: PropTypes.shape({
-        push: PropTypes.func.isRequired,
-    }).isRequired,
     login: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ user, errors, spinner }) => ({
+const mapStateToProps = ({ user, spinner }) => ({
   user,
-  errors,
   isLoading: spinner[types.USER_LOGIN],
 });
 
