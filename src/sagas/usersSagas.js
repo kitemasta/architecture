@@ -1,9 +1,10 @@
-import { call, all, put } from 'redux-saga/effects';
+import { call, all, put, takeLatest } from 'redux-saga/effects';
 import history from '../history';
 import api from '../api';
 import { loadingFinishedSuccess, loadingFinishedError } from '../actions/spinner';
+import * as types from '../types';
 
-export function* userLoginSaga(action) {
+function* userLoginSaga(action) {
   try {
     const fetchData = action.apiCalls.map(item => call(item.call, item.data));
     const result = yield all(fetchData);
@@ -13,4 +14,8 @@ export function* userLoginSaga(action) {
   } catch (err) {
     yield put(loadingFinishedError(action.type, err.message));
   }
+}
+
+export function* usersSaga() {
+  yield takeLatest(types.USER_LOGIN, userLoginSaga);
 }

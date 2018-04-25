@@ -1,7 +1,8 @@
-import * as types from './types';
-import { userLoginSaga } from './sagas/usersSagas';
-import { takeLatest } from 'redux-saga/effects';
+import * as usersSaga from './sagas/usersSagas';
+import { all, fork } from 'redux-saga/effects';
 
 export default function* rootSaga() {
-  yield takeLatest(types.USER_LOGIN, userLoginSaga);
+  yield all([
+    ...Object.values(usersSaga),
+  ].map(fork));
 }
