@@ -9,13 +9,14 @@ import UserRoute from './components/routes/UserRoute';
 
 class App extends Component {
   render() {
+    const { location } = this.props;
 
     return (
       <div className="ui container">
         <PopupErrorWrapper />
-        <Route path="/" exact component={HomePage} />
-        <GuestRoute path="/login" exact component={LoginPage} />
-        <UserRoute path="/dashboard" exact component={DashboardPage} />
+        <Route location={location} path="/" exact component={HomePage} />
+        <GuestRoute location={location} path="/login" exact component={LoginPage} />
+        <UserRoute location={location} path="/dashboard" exact component={DashboardPage} />
       </div>
     );
   }

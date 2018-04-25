@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import history from './history';
 import 'semantic-ui-css/semantic.min.css';
 import { createStore, applyMiddleware } from 'redux';
@@ -30,7 +30,7 @@ if (localStorage.authenticatedUser) {
 ReactDOM.render(
     <Router history={history}>
         <Provider store={store}>
-            <App />
+            <Route component={App} />
         </Provider>
     </Router>,
      document.getElementById('root')

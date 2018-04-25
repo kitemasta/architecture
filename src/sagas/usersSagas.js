@@ -1,6 +1,5 @@
 import { call, all, put, takeLatest } from 'redux-saga/effects';
 import history from '../history';
-import api from '../api';
 import { loadingFinishedSuccess, loadingFinishedError } from '../actions/spinner';
 import * as types from '../types';
 

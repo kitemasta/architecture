@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => (
@@ -15,4 +15,4 @@ const mapStateToProps = ({ user }) => ({
   isAuthenticated: !!user,
 });
 
-export default withRouter(connect(mapStateToProps)(GuestRoute));
+export default connect(mapStateToProps)(GuestRoute);
