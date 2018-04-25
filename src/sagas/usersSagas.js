@@ -1,12 +1,16 @@
-import { call } from 'redux-saga/effects';
+import { call, all, put } from 'redux-saga/effects';
 import history from '../history';
+import api from '../api';
+import { loadingFinishedSuccess, loadingFinishedError } from '../actions/spinner';
 
 export function* userLoginSaga(action) {
   try {
-    yield call(action.apiCall, action.user);
-    localStorage.setItem('Authenticated', true);
+    const fetchData = action.apiCalls.map(item => call(item.call, item.data));
+    const result = yield all(fetchData);
+    yield put(loadingFinishedSuccess(action.type, [...result]));
+    localStorage.setItem('authenticatedUser', JSON.stringify(result[0]));
     history.push('/');
   } catch (err) {
-    //Do smth
+    yield put(loadingFinishedError(action.type, err.message));
   }
 }

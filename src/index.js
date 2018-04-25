@@ -14,6 +14,7 @@ import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
 import { asyncActionsMiddleware } from './middleware/asyncActionsMiddleware';
 import rootSaga from './rootSaga';
+import { userLoggedAlready } from './actions/auth';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -21,6 +22,11 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(sagaMiddleware, asyncActionsMiddleware, logger))
 );
 sagaMiddleware.run(rootSaga);
+
+if (localStorage.authenticatedUser) {
+  store.dispatch(userLoggedAlready(JSON.parse(localStorage.authenticatedUser)));
+  history.push('/');
+}
 
 ReactDOM.render(
     <Router history={history}>

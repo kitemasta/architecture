@@ -9,7 +9,7 @@ class PopupErrorWrapper extends Component {
     const errorsList = errors.map(item => <PopupError
       key={item.id}
       id={item.id}
-      value={item.value.message}
+      value={item.value}
       deleteError={deleteError}
     />);
 

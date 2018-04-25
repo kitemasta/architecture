@@ -10,6 +10,13 @@ export default function user(state=defaultState, action={}) {
             ...state,
             ...action.payload,
           };
+        case types.USER_LOGED_ALREADY:
+          return {
+            ...state,
+            ...action.user,
+          };
+        case types.USER_LOGOUT:
+          return defaultState;
         default: return state;
     }
 }

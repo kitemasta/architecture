@@ -3,7 +3,17 @@ import api from '../api';
 
 export const login = user => ({
   type: types.USER_LOGIN,
-  async: true,
-  apiCall: () => api.user.login(),
-  params: [user],
+  apiCalls: [
+    { call: api.user.login, data: user},
+    { call: api.user.getData },
+  ],
 });
+
+export const userLoggedAlready = user => ({
+  type: types.USER_LOGED_ALREADY,
+  user,
+});
+
+export const logout = () => ({
+  type: types.USER_LOGOUT,
+})

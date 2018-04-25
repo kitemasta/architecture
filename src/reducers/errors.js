@@ -9,7 +9,7 @@ export default function errors(state=defaultState, action={}) {
       return [
         ...state,
         {
-          value: action.err,
+          value: action.error,
           id: Date.now(),
         },
       ];
