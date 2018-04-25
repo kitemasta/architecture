@@ -9,7 +9,7 @@ export function* userLoginSaga(action) {
     const result = yield all(fetchData);
     yield put(loadingFinishedSuccess(action.type, [...result]));
     localStorage.setItem('authenticatedUser', JSON.stringify(result[0]));
-    history.push('/');
+    history.push('/dashboard');
   } catch (err) {
     yield put(loadingFinishedError(action.type, err.message));
   }

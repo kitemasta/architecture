@@ -25,7 +25,6 @@ sagaMiddleware.run(rootSaga);
 
 if (localStorage.authenticatedUser) {
   store.dispatch(userLoggedAlready(JSON.parse(localStorage.authenticatedUser)));
-  history.push('/');
 }
 
 ReactDOM.render(

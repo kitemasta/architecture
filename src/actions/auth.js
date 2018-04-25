@@ -14,6 +14,10 @@ export const userLoggedAlready = user => ({
   user,
 });
 
-export const logout = () => ({
-  type: types.USER_LOGOUT,
-})
+export const logout = () => {
+  localStorage.removeItem('authenticatedUser');
+
+  return {
+    type: types.USER_LOGOUT,
+  };
+}
