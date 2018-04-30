@@ -11,10 +11,20 @@ mock.onGet('/api/data').reply(200, {
   id: 1, name: 'Test Data'
 });
 
+mock.onGet('/api/posts').reply(200, [
+  { id: 1, title: 'Test Data1' },
+  { id: 2, title: 'Test Data2' },
+  { id: 3, title: 'Test Data3' },
+  { id: 4, title: 'Test Data4' },
+]);
+
 export default {
     user: {
         login: credentials =>
               axios.post('/api/auth').then(res => res.data.user),
         getData: () => axios.get('/api/data').then(res => res.data),
+    },
+    posts: {
+      loadPosts: () => axios.get('/api/posts').then(r => r.data),
     }
 };
